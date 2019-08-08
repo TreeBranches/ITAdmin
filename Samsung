@@ -1,0 +1,67 @@
+# Samsung
+# Confirmed to remove bloat on UK Purchased, SIM Free Galaxy S8 Dual SIM, Galaxy S10 and Galaxy S10e. 
+# Not everything will be installed on your device as it depends on region, model, etc.
+#~~~Bixby
+pm uninstall -k --user 0 com.samsung.android.bixby.wakeup
+pm uninstall -k --user 0 com.samsung.android.app.spage
+pm uninstall -k --user 0 com.samsung.android.app.routines
+pm uninstall -k --user 0 com.samsung.android.bixby.service
+pm uninstall -k --user 0 com.samsung.android.visionintelligence
+pm uninstall -k --user 0 com.samsung.android.bixby.agent
+pm uninstall -k --user 0 com.samsung.android.bixby.agent.dummy
+pm uninstall -k --user 0 com.samsung.android.bixbyvision.framework
+#~~~General System
+pm uninstall -k --user 0 com.sec.android.app.launcher
+pm uninstall -k --user 0 com.samsung.android.mateagent
+pm uninstall -k --user 0 com.sec.android.easyMover.Agent
+pm uninstall -k --user 0 com.samsung.android.app.social
+pm uninstall -k --user 0 com.sec.android.widgetapp.samsungapps
+#~~~Samsung Pass/Pay
+pm uninstall -k --user 0 com.samsung.android.samsungpassautofill
+pm uninstall -k --user 0 com.samsung.android.authfw
+pm uninstall -k --user 0 com.samsung.android.samsungpass
+pm uninstall -k --user 0 com.samsung.android.spay
+pm uninstall -k --user 0 com.samsung.android.spayfw
+#~~~Gimmick
+pm uninstall -k --user 0 flipboard.boxer.app
+pm uninstall -k --user 0 com.samsung.android.wellbeing
+pm uninstall -k --user 0 com.samsung.android.da.daagent
+pm uninstall -k --user 0 com.samsung.android.service.livedrawing
+pm uninstall -k --user 0 com.sec.android.mimage.avatarstickers
+pm uninstall -k --user 0 com.sec.android.app.shealth
+#~~~Facebook
+pm uninstall -k --user 0 com.facebook.katana
+pm uninstall -k --user 0 com.facebook.system
+pm uninstall -k --user 0 com.facebook.appmanager
+pm uninstall -k --user 0 com.facebook.services
+#~~~Printing
+pm uninstall -k --user 0 com.android.bips
+pm uninstall -k --user 0 com.google.android.printservice.recommendation
+pm uninstall -k --user 0 com.android.printspooler
+#~~~Samsung Email
+pm uninstall -k --user 0 com.samsung.android.email.provider
+pm uninstall -k --user 0 com.wsomacp
+#~~~Samsung Game Launcher
+pm uninstall -k --user 0 com.samsung.android.game.gamehome
+pm uninstall -k --user 0 com.enhance.gameservice
+pm uninstall -k --user 0 com.samsung.android.game.gametools
+pm uninstall -k --user 0 com.samsung.android.game.gos
+pm uninstall -k --user 0 com.samsung.android.gametuner.thin
+#~~~Samsung Browser
+pm uninstall -k --user 0 com.sec.android.app.sbrowser
+pm uninstall -k --user 0 com.samsung.android.app.sbrowseredge
+#~~~Samsung GearVR
+pm uninstall -k --user 0 com.samsung.android.hmt.vrsvc
+pm uninstall -k --user 0 com.samsung.android.app.vrsetupwizardstub
+pm uninstall -k --user 0 com.samsung.android.hmt.vrshell
+pm uninstall -k --user 0 com.google.vr.vrcore
+#~~~Samsung Kids
+pm uninstall -k --user 0 com.samsung.android.kidsinstaller
+pm uninstall -k --user 0 com.samsung.android.app.camera.sticker.facearavatar.preload
+#~~~MS Edge
+pm uninstall -k --user 0 com.samsung.android.service.peoplestripe
+#~~~MS Other
+pm uninstall -k --user 0 com.microsoft.office.officehubrow
+pm uninstall -k --user 0 com.microsoft.skydrive
+#
+####PASTE FINISH
