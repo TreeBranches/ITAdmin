@@ -5,7 +5,7 @@ First draft, formatting is sloppy. Will sort later :)
 
 Scripts which remove bloatware from various Android OEM devices.
 
-I use these for deploying devices around the office, as I deploy the Microsoft launcher to keep a consistent setup through all devices, but could be applied and updated to make use of any phone.
+I use these when deploying devices around our office, as I deploy the Microsoft launcher to keep a consistent layout and configuration through all devices, but could be applied and updated to make use of any phone.
 
 - Get hold of ADB.EXE on your PC.
 - Enable Developer mode on your phone and enable USB debugging.
