@@ -19,7 +19,7 @@ In short, if something goes horribly wrong for you, it's because of something yo
 
 These instructions are for Windows. I don't use anything else for personal use so feel free to contribute other OS instructions here. 
 
-1. Get hold of ADB.EXE on your PC. It's included in the [Google SDK](https://developer.android.com/studio/command-line/adb) if you want a more official source, but you can also download it on its own from [ADB Shell](http://adbshell.com/downloads). You will need both the ADB Driver and the ADB Shell.
+1. Get hold of ADB.EXE on your PC. It's included in the [Google SDK](https://developer.android.com/studio/command-line/adb) if you want a more "Officially from Google" source, but you can also download it on its own from [ADB Shell](http://adbshell.com/downloads). You will need both the ADB Driver and the ADB Shell.
 2. Enable Developer mode on your phone and enable USB debugging - if you don't know how to do this, or do not know how to find out how to do this, forget the rest of these instructions.
 3. Plug your phone into your PC, ensure to enable File Transfer and not just charging.
 4. Navigate to where you placed ADB.EXE, hold Shift, then Right Click, and click "Open Powershell Window Here"
