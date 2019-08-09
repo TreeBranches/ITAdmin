@@ -1,7 +1,7 @@
 # Android-Debloater
 
 # Welcome
-This repository contains scripts which remove most of what I would consider bloatware from various Android OEM devices.
+This repository contains scripts which remove most of what I would consider bloatware from a gradually increasing amoung of Android OEM devices.
 
 I use these when deploying devices around our office, but could be applied and updated to make use of any phone.
 
