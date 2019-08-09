@@ -9,11 +9,11 @@ Note that as I deploy the Microsoft launcher to keep a consistent layout and con
 
 ### For example:
  - For Nokia devices, launcher relies on a number of background services to function fully, (even though it's supposedly vanilla...), and so you may start suddenly getting "com.android.xxx.xxx has stopped" randomly whilst using your phone.
- - For Samsung devices, I remove the launcher entirely. Pressing the home button without having the launcher will just give you a screen saying "Starting up..." that never goes away, and you'll have to go through some acrobatics to deploy a launcher, or revert the script. 
+ - For Samsung devices, I remove the launcher entirely. Pressing the home button without having another launcher installed will just give you a screen saying "Starting up..." that never goes away, and you'll have to go through some acrobatics to deploy a launcher, or revert the script. 
 
-If you are happy with your launcher, then at the very least, be sure to review the script before deploying it. I'm not responsible for you pasting random scripts from the internet without you knowing ***exactly*** what they do, and I'm not going to help you fix it. I've deployed this across more than 200 devices and coutning over these years, and *absolutely none* of our devices have experienced any issues that relate to these scripts.
+If you are happy with your launcher, then at the very least, be sure to review the script before deploying it. I'm not responsible for you pasting random scripts from the internet without you knowing ***exactly*** what they do, and I'm not going to help you fix it. I've deployed this across more than 200 devices over these years, and *absolutely none* of our devices developed any issues that relate to these scripts.
 
-In short, if something goes horribly wrong for you, it's your fault.
+In short, if something goes horribly wrong for you, it's because of something you did (though if you have suggestions to make my instructions clearer, please do tell!).
 
 # Instructions
 
