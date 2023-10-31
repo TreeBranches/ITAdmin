@@ -1,0 +1,74 @@
+# NOTE: THis script is not entirely my own. I grabbed this from somewhere online years ago and made some minor amendments, and don't remember who or where from...
+#       But it's very useful - so thanks for whoever made this!
+# ~~~~~~~~~~~~
+# Prerequisites
+# Install the required Powershell module first, or update if needed
+Install-WindowsFeature web-scripting-tools
+Get-PSDrive
+Write-Host -NoNewLine 'If you do not see IIS as a listed Drive, Ctrl+C and ensure the IIS Module is installed. Otherwise, press any key to continue...';
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+
+# 1. Create a self-signed certificate
+$SelfSignedHT = @{
+ DnsName = "$($env:COMPUTERNAME).$($env:USERDNSDOMAIN)".ToLower()
+ CertStoreLocation = "Cert:\LocalMachine\My"
+}
+$cert = New-SelfSignedCertificate @SelfSignedHT -NotAfter (Get-Date).AddYears(10)
+
+Write-Host -NoNewLine 'Step 1/7 Finished. Verify the new Personal Certificate is present, then press any key to continue...';
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+ 
+# 2. Export its public key
+Export-Certificate -Cert $cert -Type CERT -FilePath ~/Desktop/WSUS-VM.cer
+
+Write-Host -NoNewLine 'Step 2/7 Finished. Verify that ~/Desktop/WSUS-VM.cer is present, then press any key to continue...';
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+ 
+# 3. Import the public key in the Trusted Root Certificate Authorities store
+Import-Certificate -FilePath ~/Desktop/WSUS-VM.cer -CertStoreLocation Cert:\LocalMachine\Root
+
+Write-Host -NoNewLine 'Step 3/7 Finished. Verify the new Trusted Root Certification Authority is present, then press any key to continue...';
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+ 
+# 4. Select this certificate in the SSL bindings
+Import-Module WebAdministration
+
+$IISfilePath = "IIS:\SslBindings\0.0.0.0!8531"
+
+if (Test-Path $IISfilePath) {
+    Remove-Item $IISfilePath
+}
+
+$cert | New-Item IIS:\SslBindings\0.0.0.0!8531
+
+Write-Host -NoNewLine 'Step 4/7 Finished. Press any key to continue...';
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+ 
+# 5. Require SSL for the following virtual roots only:
+'SimpleAuthWebService','DSSAuthWebService',
+'ServerSyncWebService','APIRemoting30',
+'ClientWebService' | ForEach-Object {
+ Set-WebConfigurationProperty -Filter 'system.webserver/security/access' -Location "WSUS Administration/$($_)" -Name sslFlags -Value 8
+}
+
+Write-Host -NoNewLine 'Step 5/7 Finished. Press any key to continue...';
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+
+# 6. Switch WSUS to SSL
+& 'C:\Program Files\Update Services\Tools\WsusUtil.exe' configuressl $("$($env:COMPUTERNAME).$($env:USERDNSDOMAIN)".ToLower())
+
+Write-Host -NoNewLine 'Step 6/7 Finished. Press any key to continue...';
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+
+# This step is preferred to be done manually.
+# 7. Change your GPO to point to the new URL
+# $key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate'
+# $uri = 'https://{0}:8531' -f $("$($env:COMPUTERNAME).$($env:USERDNSDOMAIN)".ToLower())
+# Get-GPO -All | Foreach-Object { 
+#  if ($_ | Get-GPRegistryValue -Key $key -ValueName WUServer -EA 0) {
+#   $_ | Set-GPRegistryValue -Key $key -ValueName WUServer       -Value $uri -Type String
+#   $_ | Set-GPRegistryValue -Key $key -ValueName WUStatusServer -Value $uri -Type String
+#  }
+# }
+# Write-Host -NoNewLine 'All steps completed. Press any key to continue...';
+# $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
