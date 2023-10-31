@@ -1,0 +1,122 @@
+[Settings]
+Priority=LaptopType,DesktopType,Model,Product,Default
+Properties=DriverGroupName,WSUSTargetGroup
+
+[LaptopType]
+Subsection=Laptop-%IsLaptop%
+
+[DesktopType]
+Subsection=Desktop-%IsDesktop%
+
+[Laptop-True]
+OSDComputerName=DM2
+MachineObjectOU=OU=Laptops,OU=Domain Computers,DC=int,DC=CONTOSO,DC=net
+BDEInstall=TPM
+BDERecoveryKey=AD
+
+[Desktop-True]
+OSDComputerName=DM1
+MachineObjectOU=OU=Desktops,OU=Domain Computers,DC=int,DC=CONTOSO,DC=net
+BDEInstall=TPM
+BDERecoveryKey=AD
+
+
+
+
+''''''''''''''''''''''''''''
+' Default section for setting common to all
+'   and MDT settings
+''''''''''''''''''''''''''''
+
+[Default]
+SkipBDDWelcome=YES
+UserDomain=INT.CONTOSO.NET
+SkipCapture=YES
+SkipAdminPassword=YES
+SkipProductKey=YES
+SkipRoles=YES
+SkipComputerBackup=YES
+SkipBitLocker=NO
+SkipUserData=YES
+SkipLocaleSelection=YES
+SkipTimeZone=YES
+SkipFinalSummary=NO
+KeyboardLocale=en-GB
+UserLocale=en-GB
+UILanguage=en-GB
+TimeZoneName=GMT Standard Time
+_SMSTSOrgName=%TaskSequenceName%
+SLShare=\\UK-WSUS01.int.CONTOSO.net\e$\MDTLogs
+SLShareDynamicLogging=\\UK-WSUS01.int.CONTOSO.net\e$\MDTLogs
+HideShell=YES
+ApplyGPOPack=NO
+
+
+
+''''''''''''''''''''''''''''
+' Machine settings
+''''''''''''''''''''''''''''
+AdminPassword=DaagMalton
+WSUSServer=https://UK-WSUS01.int.CONTOSO.net:8531
+
+' Install Contoso Default Images (default wallpaper and profile picture)
+MandatoryApplications001={137c55b2-0be3-4bf0-b57d-aea19576e1b5}
+
+
+
+''''''''''''''''''''''''''''
+' Domain Settings
+''''''''''''''''''''''''''''
+OSDComputerName=DM
+JoinDomain=int.CONTOSO.net
+DomainOUs1=OU=Desktops,OU=Domain Computers,DC=int,DC=CONTOSO,DC=net
+DomainOUs2=OU=Laptops,OU=Domain Computers,DC=int,DC=CONTOSO,DC=net
+DomainOUs3=OU=VCE,OU=Domain Computers,DC=int,DC=CONTOSO,DC=net
+DomainOUs4=OU=NotInOffice,OU=Domain Computers,DC=int,DC=CONTOSO,DC=net
+
+
+
+''''''''''''''''''''''''''''
+' Machine Specific settings
+''''''''''''''''''''''''''''
+
+
+' Microsoft Surface
+
+[Surface Pro 8]
+DriverGroupName=Surface Pro 8
+
+[Surface Laptop 3]
+DriverGroupName=%Model%
+
+
+'Dell Laptop
+
+[Inspiron 5415]
+DriverGroupName= Dell Inspiron 5415
+DriverSelectionProfile=nothing
+
+
+'Dells
+
+[Optiplex 3070]
+DriverGroupName= Dell Optiplex 3070
+DriverSelectionProfile=nothing
+
+
+'Custom builds
+
+[A300M-STX]
+DriverGroupName= ASRock DeskMini A300
+DriverSelectionProfile=nothing
+
+[X300M-STX]
+DriverGroupName= ASRock DeskMini X300
+DriverSelectionProfile=nothing
+
+
+'Misc
+
+[Virtual Machine]
+DriverGroupName=%Model%
+DriverSelectionProfile=nothing
